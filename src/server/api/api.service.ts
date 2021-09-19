@@ -10,7 +10,6 @@ export class AppService {
       const browser = await puppeteer.launch();
       const page = await browser.newPage();
       await page.goto('https://example.com');
-      await page.screenshot({ path: 'example.png' });
       const title = await page.title()
       await browser.close();
       events.server.emit('retry', title)

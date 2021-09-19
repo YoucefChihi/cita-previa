@@ -3,9 +3,10 @@ import { NextPage } from 'next';
 import socket from 'socket.io-client'
 import axios from 'axios';
 
+const apiUrl = process.env.NODE_ENV === 'production' ? 'https://cita-previa-app.herokuapp.com' : 'http://localhost:3000'
 const Index: NextPage = () => {
   useEffect(() => {
-    const io = socket('http://localhost:3000')
+    const io = socket(`${apiUrl}`)
     io.on('init' , (e) => {
       console.log('init event received')
       console.log(e)
@@ -20,7 +21,7 @@ const Index: NextPage = () => {
     <button onClick={() => {
       console.log('hitting /api')
       axios
-        .get('http://localhost:3000/api')
+        .get(`${apiUrl}/api`)
         .then(({data}) => {
           console.log('response from /api', data)
         })
