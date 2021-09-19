@@ -7,7 +7,12 @@ export class AppService {
   async getHello(
     events: EventsGateway
   ): Promise<any> {
-      const browser = await puppeteer.launch();
+      const browser = await puppeteer.launch({
+        'args' : [
+          '--no-sandbox',
+          '--disable-setuid-sandbox'
+        ]
+      });
       const page = await browser.newPage();
       await page.goto('https://example.com');
       const title = await page.title()
