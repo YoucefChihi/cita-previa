@@ -1,9 +1,10 @@
 import { Module } from '@nestjs/common';
 
-import { AppModule } from 'src/server/app/app.module';
+import { ApiModule } from 'src/server/api/api.module';
 import { ViewModule } from 'src/server/view/view.module';
+import { EventsModule } from './events/events.module';
 
 @Module({
-  imports: [AppModule, ViewModule],
+  imports: [ApiModule, ViewModule, EventsModule],
 })
 export class ServerModule {}
